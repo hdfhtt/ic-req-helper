@@ -10,7 +10,7 @@ namespace ic_req_helper
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window // NOSONAR
     {
         readonly Boolean[] isFileLoaded = new Boolean[3];
         readonly string[] currentPath = new string[3];
