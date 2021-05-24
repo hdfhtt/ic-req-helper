@@ -88,7 +88,7 @@ namespace ic_req_helper
                         lblStatus3.Foreground = new SolidColorBrush(Colors.Green);
                         txtField3.IsEnabled = true;
                         break;
-                    default: break;
+                    default: throw new NotImplementedException();
                 }
 
                 isFileLoaded[fileNum] = true;
@@ -118,7 +118,7 @@ namespace ic_req_helper
             MessageBoxResult result = MessageBox.Show("Are you sure that you want to add these lines?", "Confirmation", MessageBoxButton.OKCancel);
 
             if (result == MessageBoxResult.OK) ProcessDocuments();
-            else if (result == MessageBoxResult.Cancel) return;
+            else return;
         }
 
         private void ProcessDocuments()
