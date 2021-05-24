@@ -12,9 +12,9 @@ namespace ic_req_helper
     /// </summary>
     public partial class MainWindow : Window
     {
-        Boolean[] isFileLoaded = new Boolean[3];
-        string[] currentPath = new string[3];
-        string[] tempPath = new string[3];
+        readonly Boolean[] isFileLoaded = new Boolean[3];
+        readonly string[] currentPath = new string[3];
+        readonly string[] tempPath = new string[3];
 
         public MainWindow()
         {
@@ -46,7 +46,7 @@ namespace ic_req_helper
             }
         }
 
-        private void addFileToTemp(int fileNum)
+        private void AddFileToTemp(int fileNum)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
@@ -88,6 +88,7 @@ namespace ic_req_helper
                         lblStatus3.Foreground = new SolidColorBrush(Colors.Green);
                         txtField3.IsEnabled = true;
                         break;
+                    default: break;
                 }
 
                 isFileLoaded[fileNum] = true;
@@ -98,17 +99,17 @@ namespace ic_req_helper
 
         private void menuSelect1_Click(object sender, RoutedEventArgs e)
         {
-            addFileToTemp(0);
+            AddFileToTemp(0);
         }
 
         private void menuSelect2_Click(object sender, RoutedEventArgs e)
         {
-            addFileToTemp(1);
+            AddFileToTemp(1);
         }
 
         private void menuSelect3_Click(object sender, RoutedEventArgs e)
         {
-            addFileToTemp(2);
+            AddFileToTemp(2);
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -116,11 +117,8 @@ namespace ic_req_helper
             // Add confirmation window
             MessageBoxResult result = MessageBox.Show("Are you sure that you want to add these lines?", "Confirmation", MessageBoxButton.OKCancel);
 
-            switch (result)
-            {
-                case MessageBoxResult.OK: ProcessDocuments(); break;
-                case MessageBoxResult.Cancel: return;
-            }
+            if (result == MessageBoxResult.OK) ProcessDocuments();
+            else if (result == MessageBoxResult.Cancel) return;
         }
 
         private void ProcessDocuments()
