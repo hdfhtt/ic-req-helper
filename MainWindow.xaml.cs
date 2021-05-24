@@ -121,10 +121,6 @@ namespace ic_req_helper
             {
                 ProcessDocuments();
             }
-            else
-            {
-                return;
-            }
         }
 
         private void ProcessDocuments()
