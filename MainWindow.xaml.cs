@@ -117,8 +117,14 @@ namespace ic_req_helper
             // Add confirmation window
             MessageBoxResult result = MessageBox.Show("Are you sure that you want to add these lines?", "Confirmation", MessageBoxButton.OKCancel);
 
-            if (result == MessageBoxResult.OK) ProcessDocuments();
-            else return;
+            if (result == MessageBoxResult.OK)
+            {
+                ProcessDocuments();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void ProcessDocuments()
