@@ -180,5 +180,10 @@ namespace ic_req_helper
         {
             ResetWindow();
         }
+
+        private void menuExit_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }
