@@ -5,7 +5,7 @@
 
 **Icon Request Helper** is an application that eases developers (specifically icon designers) to add new lines for newly requested icons without having to copy, paste and browse files multiple times.
 
-[Download](https://github.com/hdfhtt/ic-req-helper/releases)
+[Download](https://github.com/hdfhtt/ic-req-helper/releases/download/v1.0.0-alpha/IconRequestHelper-v1.0.0.exe)
 
 ---
 
