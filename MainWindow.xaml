@@ -19,7 +19,7 @@
 
         <DockPanel Grid.Row="0">
             <Menu>
-                <MenuItem Header="_Files">
+                <MenuItem Header="_File">
                     <MenuItem Header="_Output">
                         <MenuItem Header="appfilter.xml" x:Name="menuSelect1" Click="menuSelect1_Click" />
                         <MenuItem Header="appmap.xml" x:Name="menuSelect2" Click="menuSelect2_Click" />
@@ -28,8 +28,12 @@
                     <MenuItem Header="_Backup" IsEnabled="False" />
                     <Separator />
                     <MenuItem Header="_Reset" x:Name="menuReset" Click="menuReset_Click" />
+                    <Separator />
+                    <MenuItem Header="_Exit" x:Name="menuExit" Click="menuExit_Click" />
                 </MenuItem>
-                <MenuItem Header="_About" IsEnabled="False" />
+                <MenuItem Header="_Help">
+                    <MenuItem Header="_About Icon Request Helper" IsEnabled="False" />
+                </MenuItem> 
             </Menu>
         </DockPanel>
 
