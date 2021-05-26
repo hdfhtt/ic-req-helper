@@ -74,15 +74,6 @@ namespace ic_req_helper
             // CheckOverwriteButton()
         }
 
-        private void menuReset_Click(object sender, RoutedEventArgs e)
-        {
-            ResetWindow();
-        }
-
-        private void menuExit_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void menu_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
