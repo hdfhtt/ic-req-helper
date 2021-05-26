@@ -10,8 +10,8 @@
     <Grid Margin="4">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -21,9 +21,12 @@
             <Menu>
                 <MenuItem Header="_File">
                     <MenuItem Header="_Output">
-                        <MenuItem Header="appfilter.xml" x:Name="menuSelect1" Click="menuSelect1_Click" />
-                        <MenuItem Header="appmap.xml" x:Name="menuSelect2" Click="menuSelect2_Click" />
-                        <MenuItem Header="theme__resource.xml" x:Name="menuSelect3" Click="menuSelect3_Click" />
+                        <MenuItem Header="assets/appfilter.xml" x:Name="menuLocate0" Click="menuLocate0_Click" />
+                        <MenuItem Header="xml/appfilter.xml" x:Name="menuLocate1" Click="menuLocate1_Click" />
+                        <MenuItem Header="xml/appmap.xml" x:Name="menuLocate2" Click="menuLocate2_Click" />
+                        <MenuItem Header="xml/theme__resources.xml" x:Name="menuLocate3" Click="menuLocate3_Click" />
+                        <MenuItem Header="xml/drawable.xml" x:Name="menuLocate4" Click="menuLocate4_Click" />
+                        <MenuItem Header="values/icon__pack.xml" x:Name="menuLocate5" Click="menuLocate5_Click" />
                     </MenuItem>
                     <MenuItem Header="_Backup" IsEnabled="False" />
                     <Separator />
@@ -38,40 +41,39 @@
         </DockPanel>
 
         <DockPanel Margin="4" Grid.Row="1">
-            <WrapPanel DockPanel.Dock="Top" >
-                <Label>appfilter.xml:</Label>
-                <Label FontStyle="Italic" x:Name="lblStatus1" MaxWidth="450">Not selected</Label>
-            </WrapPanel>
-            <ScrollViewer Margin="4">
-                <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="txtField1" IsEnabled="False" />
-            </ScrollViewer>
+            <Label DockPanel.Dock="Top">Required files:</Label>
+            <StackPanel Margin="4">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type CheckBox}">
+                        <Setter Property="Margin" Value="4" />
+                        <Setter Property="IsEnabled" Value="False" />
+                    </Style>
+                </StackPanel.Resources>
+                <CheckBox >xml/appfilter.xml</CheckBox>
+                <CheckBox >xml/appmap.xml</CheckBox>
+                <CheckBox >xml/theme_resources.xml</CheckBox>
+                <CheckBox >xml/drawable.xml</CheckBox>
+                <CheckBox >values/icon_pack.xml</CheckBox>
+            </StackPanel>
         </DockPanel>
 
         <DockPanel Margin="4" Grid.Row="2">
-            <WrapPanel DockPanel.Dock="Top" >
-                <Label>appmap.xml:</Label>
-                <Label FontStyle="Italic" x:Name="lblStatus2" MaxWidth="450">Not selected</Label>
-            </WrapPanel>
-            <ScrollViewer Margin="4">
-                <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="txtField2" IsEnabled="False" />
-            </ScrollViewer>
+            <Label DockPanel.Dock="Top">Notes or separator:</Label>
+            <TextBox Margin="8" AcceptsReturn="False" x:Name="fieldNotes" IsEnabled="False" />
         </DockPanel>
 
         <DockPanel Margin="4" Grid.Row="3">
-            <WrapPanel DockPanel.Dock="Top" >
-                <Label>theme__resource.xml:</Label>
-                <Label FontStyle="Italic" x:Name="lblStatus3" MaxWidth="450">Not selected</Label>
-            </WrapPanel>
-            <ScrollViewer Margin="4">
-                <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="txtField3" IsEnabled="False" />
+            <Label DockPanel.Dock="Top">appfilter.xml:</Label>
+            <ScrollViewer Margin="8">
+                <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="fieldAppfilter" />
             </ScrollViewer>
         </DockPanel>
 
         <Separator Grid.Row="4" />
 
         <Grid Grid.Row="5" Margin="10">
-            <Label Content="Select output files and insert new lines to the specified fields." />
-            <Button HorizontalAlignment="Right" Width="80" x:Name="btnAdd" IsEnabled="False" Click="btnAdd_Click">Add lines</Button>
+            <Label Content="Please locate output files" />
+            <Button HorizontalAlignment="Right" Width="80" x:Name="btnOverwrite" IsEnabled="False" Click="btnOverwrite_Click">Overwrite</Button>
         </Grid>
     </Grid>
 </Window>

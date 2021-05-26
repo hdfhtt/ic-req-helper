@@ -10,7 +10,7 @@ namespace ic_req_helper
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window // NOSONAR
+    public partial class MainWindow : Window //NOSONAR
     {
         readonly Boolean[] isFileLoaded = new Boolean[3];
         readonly string[] currentPath = new string[3];
@@ -38,14 +38,15 @@ namespace ic_req_helper
             System.Windows.Application.Current.Shutdown();
         }
 
-        private void CheckAddButton()
+        private void CheckOverwriteButton()
         {
             if (isFileLoaded[0] == true && isFileLoaded[1] == true && isFileLoaded[2] == true)
             {
-                btnAdd.IsEnabled = true;
+                btnOverwrite.IsEnabled = true;
             }
         }
 
+        /*
         private void AddFileToTemp(int fileNum)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -96,85 +97,7 @@ namespace ic_req_helper
             }
 
         }
-
-        private void menuSelect1_Click(object sender, RoutedEventArgs e)
-        {
-            AddFileToTemp(0);
-        }
-
-        private void menuSelect2_Click(object sender, RoutedEventArgs e)
-        {
-            AddFileToTemp(1);
-        }
-
-        private void menuSelect3_Click(object sender, RoutedEventArgs e)
-        {
-            AddFileToTemp(2);
-        }
-
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            // Add confirmation window
-            MessageBoxResult result = MessageBox.Show("Are you sure that you want to add these lines?", "Confirmation", MessageBoxButton.OKCancel);
-
-            if (result == MessageBoxResult.OK)
-            {
-                ProcessDocuments();
-            }
-        }
-
-        private void ProcessDocuments()
-        {
-            int[] lastLine = new int[3];
-            String[] xmlParent = { "</resources>", "</appmap>", "</Theme>" };
-            string[] files = { "appfilter.xml", "appmap.xml", "theme_resource.xml" };
-
-            // Check if file valid first
-            for (int i = 0; i < 3; i++)
-            {
-                List<string> lines = File.ReadAllLines(tempPath[i]).ToList();
-                int lineCount = 0;
-                Boolean valid = false;
-
-                foreach (var line in lines)
-                {
-                    if (line.Contains(xmlParent[i]))
-                    {
-                        lastLine[i] = lineCount;
-                        valid = true;
-                    }
-
-                    lineCount++;
-                }
-
-                if (!valid)
-                {
-                    MessageBox.Show(files[i] + " is not the valid output file!");
-
-                    return;
-                }
-            }
-
-            for (int i = 0; i < 3; i++)
-            {
-                List<string> lines = File.ReadAllLines(tempPath[i]).ToList();
-
-                string text = i switch
-                {
-                    0 => txtField1.Text,
-                    1 => txtField2.Text,
-                    2 => txtField3.Text,
-                    _ => throw new NotImplementedException()
-                };
-
-                lines.Insert(lastLine[i], Environment.NewLine + text);
-                File.WriteAllLines(tempPath[i], lines);
-
-                File.Copy(tempPath[i], currentPath[i], true);
-            }
-
-            MessageBox.Show("All new lines has been added!");
-        }
+        */
 
         private void menuReset_Click(object sender, RoutedEventArgs e)
         {
@@ -184,6 +107,41 @@ namespace ic_req_helper
         private void menuExit_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
+        }
+
+        private void menuLocate0_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuLocate1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuLocate2_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuLocate3_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuLocate4_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuLocate5_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnOverwrite_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
