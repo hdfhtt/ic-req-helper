@@ -21,18 +21,18 @@
             <Menu>
                 <MenuItem Header="_File">
                     <MenuItem Header="_Output">
-                        <MenuItem Header="assets/appfilter.xml" x:Name="menuLocate0" Click="menuLocate0_Click" />
-                        <MenuItem Header="xml/appfilter.xml" x:Name="menuLocate1" Click="menuLocate1_Click" />
-                        <MenuItem Header="xml/appmap.xml" x:Name="menuLocate2" Click="menuLocate2_Click" />
-                        <MenuItem Header="xml/theme__resources.xml" x:Name="menuLocate3" Click="menuLocate3_Click" />
-                        <MenuItem Header="xml/drawable.xml" x:Name="menuLocate4" Click="menuLocate4_Click" />
-                        <MenuItem Header="values/icon__pack.xml" x:Name="menuLocate5" Click="menuLocate5_Click" />
+                        <MenuItem Header="assets/appfilter.xml" x:Name="menuLocate0" />
+                        <MenuItem Header="xml/appfilter.xml" x:Name="menuLocate1" />
+                        <MenuItem Header="xml/appmap.xml" x:Name="menuLocate2" />
+                        <MenuItem Header="xml/theme__resources.xml" x:Name="menuLocate3" />
+                        <MenuItem Header="xml/drawable.xml" x:Name="menuLocate4" />
+                        <MenuItem Header="values/icon__pack.xml" x:Name="menuLocate5" />
                     </MenuItem>
                     <MenuItem Header="_Backup" IsEnabled="False" />
                     <Separator />
-                    <MenuItem Header="_Reset" x:Name="menuReset" Click="menuReset_Click" />
+                    <MenuItem Header="_Reset" x:Name="menuReset" />
                     <Separator />
-                    <MenuItem Header="_Exit" x:Name="menuExit" Click="menuExit_Click" />
+                    <MenuItem Header="_Exit" x:Name="menuExit" />
                 </MenuItem>
                 <MenuItem Header="_Help">
                     <MenuItem Header="_About Icon Request Helper" IsEnabled="False" />
