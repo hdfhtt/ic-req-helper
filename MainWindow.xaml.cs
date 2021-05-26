@@ -28,8 +28,8 @@ namespace ic_req_helper
 
         private void CenterWindowOnScreen()
         {
-            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
-            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+            double screenWidth = SystemParameters.PrimaryScreenWidth;
+            double screenHeight = SystemParameters.PrimaryScreenHeight;
             double windowWidth = this.Width;
             double windowHeight = this.Height;
             this.Left = (screenWidth / 2) - (windowWidth / 2);
@@ -78,8 +78,14 @@ namespace ic_req_helper
         {
             FrameworkElement element = e.Source as FrameworkElement;
 
-            if (element.Name.Equals("menuExit")) Application.Current.Shutdown();
-            else if (element.Name.Equals("menuReset")) ResetWindow();
+            if (element.Name.Equals("menuExit"))
+            {
+                Application.Current.Shutdown();
+            }
+            else if (element.Name.Equals("menuReset"))
+            {
+                ResetWindow();
+            }
             else
             {
                 int result = element.Name switch
