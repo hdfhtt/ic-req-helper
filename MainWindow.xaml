@@ -49,11 +49,12 @@
                         <Setter Property="IsEnabled" Value="False" />
                     </Style>
                 </StackPanel.Resources>
-                <CheckBox >xml/appfilter.xml</CheckBox>
-                <CheckBox >xml/appmap.xml</CheckBox>
-                <CheckBox >xml/theme_resources.xml</CheckBox>
-                <CheckBox >xml/drawable.xml</CheckBox>
-                <CheckBox >values/icon_pack.xml</CheckBox>
+                <CheckBox x:Name="checkbox0">assets/appfilter.xml</CheckBox>
+                <CheckBox x:Name="checkbox1">xml/appfilter.xml</CheckBox>
+                <CheckBox x:Name="checkbox2">xml/appmap.xml</CheckBox>
+                <CheckBox x:Name="checkbox3">xml/theme__resources.xml</CheckBox>
+                <CheckBox x:Name="checkbox4">xml/drawable.xml</CheckBox>
+                <CheckBox x:Name="checkbox5">values/icon__pack.xml</CheckBox>
             </StackPanel>
         </DockPanel>
 

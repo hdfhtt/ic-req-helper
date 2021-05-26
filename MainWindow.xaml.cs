@@ -46,6 +46,36 @@ namespace ic_req_helper
             }
         }
 
+        private void LocateFiles(int num)
+        {
+            Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
+
+            string[] fileNames = { "appfilter.xml", "appfilter.xml", "appmap.xml", "theme_resource.xml", "drawable.xml", "icon_pack.xml" };
+
+            ofd.FileName = fileNames[num];
+            ofd.DefaultExt = ".xml";
+            ofd.Filter = "XML document (.xml)|*.xml";
+
+            Nullable<bool> result = ofd.ShowDialog();
+
+            if (result == true)
+            {
+                // Check checkbox
+                switch (num)
+                {
+                    case 0: checkbox0.IsChecked = true; break;
+                    case 1: checkbox1.IsChecked = true; break;
+                    case 2: checkbox2.IsChecked = true; break;
+                    case 3: checkbox3.IsChecked = true; break;
+                    case 4: checkbox4.IsChecked = true; break;
+                    case 5: checkbox5.IsChecked = true; break;
+                    default: break;
+                }
+
+                // Copy document to temp
+            }
+        }
+
         /*
         private void AddFileToTemp(int fileNum)
         {
@@ -111,32 +141,32 @@ namespace ic_req_helper
 
         private void menuLocate0_Click(object sender, RoutedEventArgs e)
         {
-
+            LocateFiles(0);
         }
 
         private void menuLocate1_Click(object sender, RoutedEventArgs e)
         {
-
+            LocateFiles(1);
         }
 
         private void menuLocate2_Click(object sender, RoutedEventArgs e)
         {
-
+            LocateFiles(2);
         }
 
         private void menuLocate3_Click(object sender, RoutedEventArgs e)
         {
-
+            LocateFiles(3);
         }
 
         private void menuLocate4_Click(object sender, RoutedEventArgs e)
         {
-
+            LocateFiles(4);
         }
 
         private void menuLocate5_Click(object sender, RoutedEventArgs e)
         {
-
+            LocateFiles(5);
         }
 
         private void btnOverwrite_Click(object sender, RoutedEventArgs e)
