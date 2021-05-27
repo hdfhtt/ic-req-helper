@@ -60,7 +60,7 @@ namespace ic_req_helper
         {
             Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
 
-            string[] fileNames = { "appfilter.xml", "appfilter.xml", "appmap.xml", "theme_resource.xml", "drawable.xml", "icon_pack.xml" };
+            string[] fileNames = { "appfilter.xml", "appfilter.xml", "appmap.xml", "theme_resources.xml", "drawable.xml", "icon_pack.xml" };
 
             ofd.FileName = fileNames[num];
             ofd.DefaultExt = ".xml";
@@ -68,20 +68,38 @@ namespace ic_req_helper
 
             Nullable<bool> result = ofd.ShowDialog();
 
-            if (result == true)
+            // Check if file valid
+            if (result == true && Path.GetFileName(ofd.FileName).Equals(fileNames[num]))
             {
-                // Check if file valid
-
                 // Copy document to temp
                 currentPath[num] = ofd.FileName;
-                tempPath[num] = Path.Combine(Path.GetTempPath(), Path.GetFileNameWithoutExtension(ofd.FileName) + ".xml");
-                File.Copy(ofd.FileName, tempPath[num], true);
+
+                string parentFolder = Path.GetFileName(Path.GetDirectoryName(currentPath[num])) + "\\";
+
+                tempPath[num] = Path.Combine(Path.GetTempPath(), parentFolder + Path.GetFileName(ofd.FileName));
+
+                try
+                {
+
+                    File.Copy(currentPath[num], tempPath[num], true);
+
+                } catch(DirectoryNotFoundException)
+                {
+
+                    Directory.CreateDirectory(Path.Combine(Path.GetTempPath(), parentFolder));
+                    File.Copy(currentPath[num], tempPath[num], true);
+
+                }
+
 
                 // Check checkbox
                 var checkbox = this.FindName($"checkbox{num}") as CheckBox;
                 checkbox.IsChecked = true;
 
                 isFileReady[num] = true;
+            } else
+            {
+                MessageBox.Show("Please select a valid file, try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             CheckOverwriteButton();
@@ -119,6 +137,10 @@ namespace ic_req_helper
         private void btnOverwrite_Click(object sender, RoutedEventArgs e)
         {
             // Todo
+            for (int i = 0; i < tempPath.Length; i++)
+            {
+                MessageBox.Show(tempPath[i] + "\n" + currentPath[i]);
+            }
         }
     }
 }
