@@ -42,20 +42,51 @@
 
         <DockPanel Margin="4" Grid.Row="1">
             <Label DockPanel.Dock="Top">Required files:</Label>
-            <StackPanel Margin="4">
-                <StackPanel.Resources>
+
+            <Grid Margin="4">
+                <Grid.Resources>
                     <Style TargetType="{x:Type CheckBox}">
+                        <Setter Property="Grid.Column" Value="0" />
                         <Setter Property="Margin" Value="4" />
                         <Setter Property="IsEnabled" Value="False" />
                     </Style>
-                </StackPanel.Resources>
-                <CheckBox x:Name="checkbox0">assets/appfilter.xml</CheckBox>
-                <CheckBox x:Name="checkbox1">xml/appfilter.xml</CheckBox>
-                <CheckBox x:Name="checkbox2">xml/appmap.xml</CheckBox>
-                <CheckBox x:Name="checkbox3">xml/theme__resources.xml</CheckBox>
-                <CheckBox x:Name="checkbox4">xml/drawable.xml</CheckBox>
-                <CheckBox x:Name="checkbox5">values/icon__pack.xml</CheckBox>
-            </StackPanel>
+
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="Grid.Column" Value="1" />
+                        <Setter Property="Height" Value="24" />
+                        <Setter Property="FontStyle" Value="Italic" />
+                        <Setter Property="Foreground" Value="Green" />
+                    </Style>
+                </Grid.Resources>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <CheckBox x:Name="checkbox0" Grid.Row="0">assets/appfilter.xml</CheckBox>
+                <CheckBox x:Name="checkbox1" Grid.Row="1">xml/appfilter.xml</CheckBox>
+                <CheckBox x:Name="checkbox2" Grid.Row="2">xml/appmap.xml</CheckBox>
+                <CheckBox x:Name="checkbox3" Grid.Row="3">xml/theme__resources.xml</CheckBox>
+                <CheckBox x:Name="checkbox4" Grid.Row="4">xml/drawable.xml</CheckBox>
+                <CheckBox x:Name="checkbox5" Grid.Row="5">values/icon__pack.xml</CheckBox>
+
+                <Label x:Name="path0" Grid.Row="0" />
+                <Label x:Name="path1" Grid.Row="1" />
+                <Label x:Name="path2" Grid.Row="2" />
+                <Label x:Name="path3" Grid.Row="3" />
+                <Label x:Name="path4" Grid.Row="4" />
+                <Label x:Name="path5" Grid.Row="5" />
+            </Grid>
         </DockPanel>
 
         <DockPanel Margin="4" Grid.Row="2">

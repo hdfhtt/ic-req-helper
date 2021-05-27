@@ -91,10 +91,12 @@ namespace ic_req_helper
 
                 }
 
-
                 // Check checkbox
                 var checkbox = this.FindName($"checkbox{num}") as CheckBox;
                 checkbox.IsChecked = true;
+
+                var label = this.FindName($"path{num}") as Label;
+                label.Content = currentPath[num];
 
                 isFileReady[num] = true;
             } else
@@ -137,10 +139,6 @@ namespace ic_req_helper
         private void btnOverwrite_Click(object sender, RoutedEventArgs e)
         {
             // Todo
-            for (int i = 0; i < tempPath.Length; i++)
-            {
-                MessageBox.Show(tempPath[i] + "\n" + currentPath[i]);
-            }
         }
     }
 }
