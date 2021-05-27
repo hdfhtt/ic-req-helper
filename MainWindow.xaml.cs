@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,20 +10,25 @@ namespace ic_req_helper
     /// </summary>
     public partial class MainWindow : Window //NOSONAR
     {
-        readonly Boolean[] isFileLoaded = new Boolean[3];
-        readonly string[] currentPath = new string[3];
-        readonly string[] tempPath = new string[3];
+        readonly Boolean[] isFileReady = new Boolean[6];
+        readonly string[] currentPath = new string[6];
+        readonly string[] tempPath = new string[6];
 
         public MainWindow()
         {
             InitializeComponent();
             CenterWindowOnScreen();
 
-            MenuItem[] menuItems = { menuLocate0, menuLocate1, menuLocate2, menuLocate3, menuLocate4, menuLocate5, menuReset, menuExit }; 
+            MenuItem[] menuItems = { menuLocate0, menuLocate1, menuLocate2, menuLocate3, menuLocate4, menuLocate5, menuReset, menuExit };
 
             for (int i = 0; i < menuItems.Length; i++)
             {
                 menuItems[i].Click += menu_Click;
+            }
+
+            for (int i = 0; i < isFileReady.Length; i++)
+            {
+                isFileReady[i] = false;
             }
         }
 
@@ -44,7 +50,7 @@ namespace ic_req_helper
 
         private void CheckOverwriteButton()
         {
-            if (isFileLoaded[0] == true && isFileLoaded[1] == true && isFileLoaded[2] == true)
+            if (isFileReady[0] && isFileReady[1] && isFileReady[2] && isFileReady[3] && isFileReady[4] && isFileReady[5])
             {
                 btnOverwrite.IsEnabled = true;
             }
@@ -55,7 +61,6 @@ namespace ic_req_helper
             Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
 
             string[] fileNames = { "appfilter.xml", "appfilter.xml", "appmap.xml", "theme_resource.xml", "drawable.xml", "icon_pack.xml" };
-            CheckBox[] cbControls = { checkbox0, checkbox1, checkbox2, checkbox3, checkbox4, checkbox5 };
 
             ofd.FileName = fileNames[num];
             ofd.DefaultExt = ".xml";
@@ -65,13 +70,21 @@ namespace ic_req_helper
 
             if (result == true)
             {
-                // Check checkbox
-                cbControls[num].IsChecked = true;
+                // Check if file valid
 
                 // Copy document to temp
+                currentPath[num] = ofd.FileName;
+                tempPath[num] = Path.Combine(Path.GetTempPath(), Path.GetFileNameWithoutExtension(ofd.FileName) + ".xml");
+                File.Copy(ofd.FileName, tempPath[num], true);
+
+                // Check checkbox
+                var checkbox = this.FindName($"checkbox{num}") as CheckBox;
+                checkbox.IsChecked = true;
+
+                isFileReady[num] = true;
             }
 
-            // CheckOverwriteButton()
+            CheckOverwriteButton();
         }
 
         private void menu_Click(object sender, RoutedEventArgs e)
