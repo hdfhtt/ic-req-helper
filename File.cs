@@ -4,7 +4,7 @@ using System.Xml;
 
 namespace ic_req_helper
 {
-    class File
+    internal class File
     {
         public static void ParseTextData(string text)
         {
