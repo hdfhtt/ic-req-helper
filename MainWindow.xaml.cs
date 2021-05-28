@@ -21,9 +21,9 @@ namespace ic_req_helper
 
             MenuItem[] menuItems = { menuLocate0, menuLocate1, menuLocate2, menuLocate3, menuLocate4, menuLocate5, menuReset, menuExit };
 
-            for (int i = 0; i < menuItems.Length; i++)
+            foreach (MenuItem item in menuItems)
             {
-                menuItems[i].Click += menu_Click;
+                item.Click += menu_Click;
             }
 
             for (int i = 0; i < isFileReady.Length; i++)
@@ -81,13 +81,13 @@ namespace ic_req_helper
                 try
                 {
 
-                    File.Copy(currentPath[num], tempPath[num], true);
+                    System.IO.File.Copy(currentPath[num], tempPath[num], true);
 
                 } catch(DirectoryNotFoundException)
                 {
 
                     Directory.CreateDirectory(Path.Combine(Path.GetTempPath(), parentFolder));
-                    File.Copy(currentPath[num], tempPath[num], true);
+                    System.IO.File.Copy(currentPath[num], tempPath[num], true);
 
                 }
 
