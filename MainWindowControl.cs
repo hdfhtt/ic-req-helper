@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Xml;
 
 namespace ic_req_helper
 {
@@ -37,6 +38,11 @@ namespace ic_req_helper
         private void btnOverwrite_Click(object sender, RoutedEventArgs e)
         {
             // Todo
+        }
+
+        private void btnDebug_Click(object sender, RoutedEventArgs e)
+        {
+            File.ParseTextData(fieldAppfilter.Text);
         }
     }
 }
