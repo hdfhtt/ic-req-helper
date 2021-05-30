@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace ic_req_helper
 {
-    internal class File
+    internal static class File
     {
         readonly static List<Tuple<string, string, string>> compList = new List<Tuple<string, string, string>>();
         readonly public static string[] paths = new string[6];
@@ -31,7 +31,7 @@ namespace ic_req_helper
                 {
                     string component = item.Attributes["component"].Value;
 
-                    int index = component.IndexOf("/");
+                    int index = component.IndexOf("/"); // NOSONAR
 
                     string packageName = component.Substring(0, index).Replace("ComponentInfo{", "");
                     string activity = component.Substring(index + 1).Replace("ComponentInfo{", "").Replace("}", "");

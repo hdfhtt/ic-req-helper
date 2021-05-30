@@ -8,7 +8,7 @@ namespace ic_req_helper
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window //NOSONAR
+    public partial class MainWindow : Window // NOSONAR
     {
         readonly Boolean[] isFileReady = new Boolean[6];
 
