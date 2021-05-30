@@ -8,13 +8,3 @@
 [Download](https://github.com/hdfhtt/ic-req-helper/releases/download/v1.0.0-alpha/IconRequestHelper-v1.0.0.exe)
 
 ---
-
-## Screenshot
-<p align="center">
-  <img src="https://raw.githubusercontent.com/hdfhtt/ic-req-helper/main/Screenshot/ic-req-helper-v1.0.0-alpha-preview.jpg" />
-</p>
-<p align="center">version 1.0.0-alpha</p>
-<p align="center">
-  <img src="https://raw.githubusercontent.com/hdfhtt/ic-req-helper/main/Screenshot/ic-req-helper-v1.0.0-test-preview.jpg" />
-</p>
-<p align="center">version 1.0.0-test</p>
