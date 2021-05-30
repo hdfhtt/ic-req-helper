@@ -31,10 +31,8 @@ namespace ic_req_helper
                 {
                     string component = item.Attributes["component"].Value;
 
-                    int index = component.IndexOf("/"); // NOSONAR
-
-                    string packageName = component.Substring(0, index).Replace("ComponentInfo{", "");
-                    string activity = component.Substring(index + 1).Replace("ComponentInfo{", "").Replace("}", "");
+                    string packageName = component.Substring(0, component.IndexOf("/")).Replace("ComponentInfo{", "");
+                    string activity = component.Substring(component.IndexOf("/") + 1).Replace("ComponentInfo{", "").Replace("}", "");
                     string appName = item.Attributes["drawable"].Value;
 
                     compList.Add(Tuple.Create(packageName, activity, appName));
@@ -103,34 +101,28 @@ namespace ic_req_helper
                             case 4:
                                 element.InnerText = j.Item3;
                                 break;
-                        }
-
-                        switch (i)
-                        {
-                            case 0:
-                            case 1:
-                            case 2:
-                                xmlRoots[i].InsertAfter(element, xmlRoots[i].LastChild);
-                                break;
-
-                            case 3:
-                                XmlNode node1 = xmlFiles[i].SelectSingleNode("//category[@title='All']");
-                                xmlRoots[i].InsertAfter(element, node1);
-                                break;
-
-                            case 4:
-                                XmlNode node2 = xmlFiles[i].SelectSingleNode("//string-array[@name='all']");
-                                node2.AppendChild(element);
-                                break;
+                            default: throw new InvalidOperationException();
                         }
 
                         if (i < 3)
                         {
+                            xmlRoots[i].InsertAfter(element, xmlRoots[i].LastChild);
+
                             // Add comment to each node
 
                             TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
                             XmlComment comment = xmlFiles[i].CreateComment(" " + textInfo.ToTitleCase(j.Item3.Replace("__", "").Replace("_", " ")) + " ");
                             xmlRoots[i].InsertBefore(comment, element);
+                        } 
+                        else if (i == 3)
+                        {
+                            XmlNode node1 = xmlFiles[i].SelectSingleNode("//category[@title='All']");
+                            xmlRoots[i].InsertAfter(element, node1);
+                        }
+                        else if (i == 4)
+                        {
+                            XmlNode node2 = xmlFiles[i].SelectSingleNode("//string-array[@name='all']");
+                            node2.AppendChild(element);
                         }
                     }
 
