@@ -31,8 +31,11 @@ namespace ic_req_helper
                 {
                     string component = item.Attributes["component"].Value;
 
-                    string packageName = component.Substring(0, component.IndexOf("/")).Replace("ComponentInfo{", "");
-                    string activity = component.Substring(component.IndexOf("/") + 1).Replace("ComponentInfo{", "").Replace("}", "");
+                    const string symbol = "/";
+                    int index = component.IndexOf(symbol);
+
+                    string packageName = component.Substring(0, index).Replace("ComponentInfo{", "");
+                    string activity = component.Substring(index + 1).Replace("ComponentInfo{", "").Replace("}", "");
                     string appName = item.Attributes["drawable"].Value;
 
                     compList.Add(Tuple.Create(packageName, activity, appName));
