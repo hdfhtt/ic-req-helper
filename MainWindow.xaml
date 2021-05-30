@@ -104,7 +104,11 @@
         <Separator Grid.Row="4" />
 
         <Grid Grid.Row="5" Margin="10">
-            <Label Content="Please locate output files" />
+            <Label>
+                <Label.Content>
+                    <TextBlock>Paste everything from <Bold>appfilter__xxxxxxxx__xxxxxx.xml</Bold> file.</TextBlock>
+                </Label.Content>
+            </Label>
             <Button HorizontalAlignment="Right" Width="80" x:Name="btnOverwrite" IsEnabled="False" Click="btnOverwrite_Click">Overwrite</Button>
         </Grid>
     </Grid>
