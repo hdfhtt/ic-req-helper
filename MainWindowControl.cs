@@ -42,7 +42,7 @@ namespace ic_req_helper
 
         private void btnDebug_Click(object sender, RoutedEventArgs e)
         {
-            File.ParseTextData(fieldAppfilter.Text);
+            File.ProcessXML(fieldAppfilter.Text);
         }
     }
 }

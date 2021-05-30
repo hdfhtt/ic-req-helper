@@ -11,8 +11,6 @@ namespace ic_req_helper
     public partial class MainWindow : Window //NOSONAR
     {
         readonly Boolean[] isFileReady = new Boolean[6];
-        readonly string[] currentPath = new string[6];
-        readonly string[] tempPath = new string[6];
 
         public MainWindow()
         {
@@ -71,32 +69,12 @@ namespace ic_req_helper
             // Check if file valid
             if (result == true && Path.GetFileName(ofd.FileName).Equals(fileNames[num]))
             {
-                // Copy document to temp
-                currentPath[num] = ofd.FileName;
-
-                string parentFolder = Path.GetFileName(Path.GetDirectoryName(currentPath[num])) + "\\";
-
-                tempPath[num] = Path.Combine(Path.GetTempPath(), parentFolder + Path.GetFileName(ofd.FileName));
-
-                try
-                {
-
-                    System.IO.File.Copy(currentPath[num], tempPath[num], true);
-
-                } catch(DirectoryNotFoundException)
-                {
-
-                    Directory.CreateDirectory(Path.Combine(Path.GetTempPath(), parentFolder));
-                    System.IO.File.Copy(currentPath[num], tempPath[num], true);
-
-                }
-
                 // Check checkbox
                 var checkbox = this.FindName($"checkbox{num}") as CheckBox;
                 checkbox.IsChecked = true;
 
                 var label = this.FindName($"path{num}") as Label;
-                label.Content = currentPath[num];
+                label.Content = ofd.FileName;
 
                 isFileReady[num] = true;
             } else
