@@ -37,12 +37,13 @@ namespace ic_req_helper
 
         private void btnOverwrite_Click(object sender, RoutedEventArgs e)
         {
-            // Todo
-        }
+            // Todo: Add confirmation box
+            var result = MessageBox.Show("Are you sure you want to continue?", "Confirmation", MessageBoxButton.OKCancel, MessageBoxImage.Question);
 
-        private void btnDebug_Click(object sender, RoutedEventArgs e)
-        {
-            File.ProcessXML(fieldAppfilter.Text);
+            if (result == MessageBoxResult.OK)
+            {
+                File.ProcessXML(fieldAppfilter.Text);
+            }
         }
     }
 }
