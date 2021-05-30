@@ -10,7 +10,7 @@ namespace ic_req_helper
     internal class File
     {
         readonly static List<Tuple<string, string, string>> compList = new List<Tuple<string, string, string>>();
-        readonly static string[] paths = new string[6];
+        readonly public static string[] paths = new string[6];
 
         public static void ProcessXML(string text)
         {
@@ -45,56 +45,110 @@ namespace ic_req_helper
             }
 
             // Process XML text
-            XmlDocument[] xmlFiles = new XmlDocument[6]; // Index 1 is never use
-            XmlNode[] xmlRoots = new XmlNode[6];
 
-            // appfilter.xml (2)
-            xmlFiles[0] = new XmlDocument();
+            int totalFiles = 5;
 
-            xmlFiles[0].Load(paths[0]);
+            /* 
+             * 0. appfilter.xml
+             * 1. appmap.xml
+             * 2. theme_resources.xml
+             * 3. drawable.xml
+             * 4. icon_pack.xml
+             */
 
-            xmlRoots[0] = xmlFiles[0].DocumentElement;
-
-            foreach (var i in compList)
+            XmlDocument[] xmlFiles = new XmlDocument[totalFiles];
+            XmlNode[] xmlRoots = new XmlNode[totalFiles];
+            
+            for (int i = 0; i < totalFiles; i++)
             {
-                XmlElement element = xmlFiles[0].CreateElement("item");
-                element.SetAttribute("component", "ComponentInfo{" + i.Item1 + "/" + i.Item2 + "}");
-                element.SetAttribute("drawable", i.Item3);
-                xmlRoots[0].InsertAfter(element, xmlRoots[0].LastChild);
+                xmlFiles[i] = new XmlDocument();
+                
+                if (i == 0)
+                {
+                    xmlFiles[0].Load(paths[0]);
+                }
+                else
+                {
+                    xmlFiles[i].Load(paths[i + 1]);
+                }
 
-                // Add comment to each node
-                TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-                XmlComment comment = xmlFiles[0].CreateComment(" " + textInfo.ToTitleCase(i.Item3.Replace("__", "").Replace("_", " ")) + " ");
-                xmlRoots[0].InsertBefore(comment, element);
+                xmlRoots[i] = xmlFiles[i].DocumentElement;
+
+                foreach (var j in compList)
+                {
+                    XmlElement element;
+
+                    if (i == 2)
+                    {
+                        element = xmlFiles[i].CreateElement("AppIcon");
+                    } else
+                    {
+                        element = xmlFiles[i].CreateElement("item");
+                    }
+
+                    switch (i)
+                    {
+                        case 0:
+                            element.SetAttribute("component", "ComponentInfo{" + j.Item1 + "/" + j.Item2 + "}");
+                            element.SetAttribute("drawable", j.Item3);
+                            break;
+                        case 1:
+                            element.SetAttribute("class", j.Item2);
+                            element.SetAttribute("drawable", j.Item3);
+                            break;
+                        case 2:
+                            element.SetAttribute("name", j.Item1 + "/" + j.Item2);
+                            element.SetAttribute("image", j.Item3);
+                            break;
+                        case 3:
+                            element.SetAttribute("drawable", j.Item3);
+                            break;
+                        case 4:
+                            element.InnerText = j.Item3;
+                            break;
+                    }
+
+                    switch (i)
+                    {
+                        case 0:
+                        case 1:
+                        case 2:
+                            xmlRoots[i].InsertAfter(element, xmlRoots[i].LastChild);
+                            break;
+
+                        case 3:
+                            XmlNode node1 = xmlFiles[i].SelectSingleNode("//category[@title='All']");
+                            xmlRoots[i].InsertAfter(element, node1);
+                            break;
+
+                        case 4:
+                            XmlNode node2 = xmlFiles[i].SelectSingleNode("//string-array[@name='all']");
+                            node2.AppendChild(element);
+                            break;
+                    }
+
+                    if (i < 3)
+                    {
+                        // Add comment to each node
+
+                        TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+                        XmlComment comment = xmlFiles[i].CreateComment(" " + textInfo.ToTitleCase(j.Item3.Replace("__", "").Replace("_", " ")) + " ");
+                        xmlRoots[i].InsertBefore(comment, element);
+                    }
+                }
+
+                if (i == 0)
+                {
+                    xmlFiles[0].Save(paths[0]);
+                    System.IO.File.Copy(paths[0], paths[1], true);
+                }
+                else
+                {
+                    xmlFiles[i].Save(paths[i + 1]);
+                }
             }
 
-            // Todo: Implement foreach statement
-            xmlFiles[0].Save(paths[0]);
-            System.IO.File.Copy(paths[0], paths[1], true);
-
-            // appmap.xml
-            xmlFiles[2] = new XmlDocument();
-
-            xmlFiles[2].Load(paths[2]);
-
-            xmlRoots[2] = xmlFiles[2].DocumentElement;
-
-            foreach (var i in compList)
-            {
-                XmlElement element = xmlFiles[2].CreateElement("item");
-                element.SetAttribute("class", i.Item2);
-                element.SetAttribute("drawable", i.Item3);
-                xmlRoots[2].InsertAfter(element, xmlRoots[2].LastChild);
-
-                // Add comment to each node
-                TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-                XmlComment comment = xmlFiles[2].CreateComment(" " + textInfo.ToTitleCase(i.Item3.Replace("__", "").Replace("_", " ")) + " ");
-                xmlRoots[2].InsertBefore(comment, element);
-            }
-
-            xmlFiles[2].Save(paths[2]);
-
-            MessageBox.Show("DONE!"); // Debug message box
+            MessageBox.Show("All files has been successfully updated.", "Success", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
     }
 }

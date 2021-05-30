@@ -69,6 +69,8 @@ namespace ic_req_helper
             // Check if file valid
             if (result == true && Path.GetFileName(ofd.FileName).Equals(fileNames[num]))
             {
+                File.paths[num] = ofd.FileName;
+
                 // Check checkbox
                 var checkbox = this.FindName($"checkbox{num}") as CheckBox;
                 checkbox.IsChecked = true;
