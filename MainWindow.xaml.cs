@@ -10,13 +10,18 @@ namespace ic_req_helper
     /// </summary>
     public partial class MainWindow : Window // NOSONAR
     {
-        public static MainWindow instance;
+        private static MainWindow _instance;
+
+        public static MainWindow Instance()
+        {
+            return _instance;
+        }
 
         readonly Boolean[] isFileReady = new Boolean[6];
 
         public MainWindow()
         {
-            instance = this;
+            _instance = this;
 
             InitializeComponent();
 

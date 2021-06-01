@@ -9,7 +9,7 @@ namespace ic_req_helper
     {
         public AboutWindow()
         {
-            Owner = MainWindow.instance;
+            Owner = MainWindow.Instance();
 
             InitializeComponent();
         }
