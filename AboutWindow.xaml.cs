@@ -5,7 +5,7 @@ namespace ic_req_helper
     /// <summary>
     /// Interaction logic for AboutWindow.xaml
     /// </summary>
-    public partial class AboutWindow : Window
+    public partial class AboutWindow : Window // eslint-disable-line no-eval
     {
         public AboutWindow()
         {
