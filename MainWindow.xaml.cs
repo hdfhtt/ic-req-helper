@@ -10,14 +10,19 @@ namespace ic_req_helper
     /// </summary>
     public partial class MainWindow : Window // NOSONAR
     {
+        public static MainWindow instance;
+
         readonly Boolean[] isFileReady = new Boolean[6];
 
         public MainWindow()
         {
-            InitializeComponent();
-            CenterWindowOnScreen();
+            instance = this;
 
-            MenuItem[] menuItems = { menuLocate0, menuLocate1, menuLocate2, menuLocate3, menuLocate4, menuLocate5, menuReset, menuExit };
+            InitializeComponent();
+
+            LocationChanged += MainWindow_LocationChanged;
+
+            MenuItem[] menuItems = { menuLocate0, menuLocate1, menuLocate2, menuLocate3, menuLocate4, menuLocate5, menuReset, menuExit, menuAbout };
 
             foreach (MenuItem item in menuItems)
             {
@@ -28,16 +33,6 @@ namespace ic_req_helper
             {
                 isFileReady[i] = false;
             }
-        }
-
-        private void CenterWindowOnScreen()
-        {
-            double screenWidth = SystemParameters.PrimaryScreenWidth;
-            double screenHeight = SystemParameters.PrimaryScreenHeight;
-            double windowWidth = this.Width;
-            double windowHeight = this.Height;
-            this.Left = (screenWidth / 2) - (windowWidth / 2);
-            this.Top = (screenHeight / 2) - (windowHeight / 2);
         }
 
         private void ResetWindow()
@@ -87,5 +82,10 @@ namespace ic_req_helper
             CheckOverwriteButton();
         }
 
+        private void ShowAboutWindow()
+        {
+            AboutWindow window = new AboutWindow();
+            window.Show();
+        }
     }
 }

@@ -18,6 +18,10 @@ namespace ic_req_helper
             {
                 ResetWindow();
             }
+            else if (element.Name.Equals("menuAbout"))
+            {
+                ShowAboutWindow();
+            }
             else
             {
                 int result = element.Name switch
@@ -43,6 +47,15 @@ namespace ic_req_helper
             if (result == MessageBoxResult.OK)
             {
                 File.ProcessXML(fieldAppfilter.Text);
+            }
+        }
+
+        private void MainWindow_LocationChanged(object sender, EventArgs e)
+        {
+            foreach (Window win in this.OwnedWindows)
+            {
+                win.Top = this.Top + ((this.ActualHeight - win.ActualHeight) / 2);
+                win.Left = this.Left + ((this.ActualWidth - win.ActualWidth) / 2);
             }
         }
     }

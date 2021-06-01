@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:ic_req_helper"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
         Title="Icon Request Helper" MinHeight="520" Height="520" Width="640">
     <Grid Margin="4">
         <Grid.RowDefinitions>
@@ -35,7 +36,7 @@
                     <MenuItem Header="_Exit" x:Name="menuExit" />
                 </MenuItem>
                 <MenuItem Header="_Help">
-                    <MenuItem Header="_About Icon Request Helper" IsEnabled="False" />
+                    <MenuItem Header="_About Icon Request Helper" x:Name="menuAbout" />
                 </MenuItem> 
             </Menu>
         </DockPanel>
