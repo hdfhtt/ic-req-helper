@@ -4,7 +4,7 @@ using System.Xml;
 
 namespace ic_req_helper
 {
-    public partial class MainWindow : Window // eslint-disable-line no-eval
+    public partial class MainWindow : Window
     {
         private void menu_Click(object sender, RoutedEventArgs e)
         {

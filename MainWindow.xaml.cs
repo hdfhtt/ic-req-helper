@@ -8,7 +8,7 @@ namespace ic_req_helper
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window // eslint-disable-line no-eval
+    public partial class MainWindow : Window
     {
         private static MainWindow _instance;
 
@@ -91,6 +91,8 @@ namespace ic_req_helper
         {
             AboutWindow window = new AboutWindow();
             window.Show();
+
+            this.IsEnabled = false;
         }
     }
 }
