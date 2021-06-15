@@ -14,17 +14,22 @@
         
         <StackPanel Grid.Row="0" Margin="20">
             <StackPanel.Resources>
-                <Style TargetType="{x:Type Label}">
+                <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="HorizontalAlignment" Value="Center" />
                     <Setter Property="FontSize" Value="12" />
+                    <Setter Property="Margin" Value="4" />
                 </Style>
             </StackPanel.Resources>
 
             <Image Source="app_icon.ico" Width="100" />
-            <Label FontWeight="Bold">Icon Request Helper</Label>
-            
-            <Label>Version 1.0.0 (release notes)</Label>
-            <Label>License</Label>
+            <TextBlock FontWeight="Bold">Icon Request Helper</TextBlock>
+
+            <TextBlock>Version 1.0.0 (release notes)</TextBlock>
+            <TextBlock>           
+                <Hyperlink NavigateUri="https://github.com/hdfhtt/ic-req-helper/blob/main/LICENSE" RequestNavigate="Hyperlink_RequestNavigate">
+                    License
+                </Hyperlink>
+            </TextBlock>
         </StackPanel>
         
         <StackPanel Grid.Row="1">
