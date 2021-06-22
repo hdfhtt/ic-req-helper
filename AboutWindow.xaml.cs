@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Navigation;
+using System.Reflection;
 
 namespace ic_req_helper
 {
@@ -14,6 +15,12 @@ namespace ic_req_helper
             Owner = MainWindow.Instance();
 
             InitializeComponent();
+
+            string versionMajor = Assembly.GetExecutingAssembly().GetName().Version.Major.ToString();
+            string versionMinor = Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString();
+            string versionBuild = Assembly.GetExecutingAssembly().GetName().Version.Build.ToString();
+
+            version.Text = $"{versionMajor}.{versionMinor}.{versionBuild}";
 
             CloseButton.Click += CloseButton_Click;
         }
