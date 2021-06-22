@@ -24,7 +24,9 @@
             <Image Source="app_icon.ico" Width="100" />
             <TextBlock FontWeight="Bold">Icon Request Helper</TextBlock>
 
-            <TextBlock>Version 1.0.0 (release notes)</TextBlock>
+            <TextBlock>Version 1.0.0 (<Hyperlink NavigateUri="https://github.com/hdfhtt/ic-req-helper/releases" RequestNavigate="Hyperlink_RequestNavigate">
+                release notes
+            </Hyperlink>)</TextBlock>
             <TextBlock>           
                 <Hyperlink NavigateUri="https://github.com/hdfhtt/ic-req-helper/blob/main/LICENSE" RequestNavigate="Hyperlink_RequestNavigate">
                     License
